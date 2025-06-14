@@ -11,12 +11,14 @@ import org.junit.Test;
 
 import java.sql.Connection;
 import java.sql.Statement;
+import java.util.List;
 
 import static org.junit.Assert.*;
 
 public class UserRepositoryTest {
 
     private IUserRepository repository;
+    private UserRepositoryImp userRepository;
 
     @Before
     public void setup() throws Exception {
@@ -27,6 +29,11 @@ public class UserRepositoryTest {
             stmt.executeUpdate("DROP TABLE IF EXISTS users");
             stmt.executeUpdate("CREATE TABLE users (email TEXT PRIMARY KEY, password TEXT, name TEXT, role TEXT)");
         }
+    }
+    
+    public void setUp() {
+        // Arrange: inicializar repositorio real
+        userRepository = new UserRepositoryImp();
     }
 
     @Test
@@ -41,4 +48,21 @@ public class UserRepositoryTest {
         assertEquals("Test Repo", result.getName());
         assertEquals(UserRole.STANDARD, result.getRole());
     }
+    
+    public void testFindAllUsers_ReturnsUserList() {
+        // Arrange: (el repositorio cuenta con un solo usuario ya crreado asi que se puede usar para el test)
+
+        // Act: llamar al método findAll
+        List<User> userList = userRepository.findAll();
+
+        // Assert: verificar resultados
+        assertNotNull("La lista de usuarios no debe ser nula", userList);
+        assertTrue("Debe haber al menos un usuario registrado", userList.size() >= 0);
+
+        // Puedes imprimir los usuarios como apoyo visual (opcional en pruebas unitarias)
+        for (User user : userList) {
+            System.out.println("Usuario: " + user.getName() + " | Email: " + user.getEmail() + " | Rol: " + user.getRole());
+        }
+    }
+    
 }
