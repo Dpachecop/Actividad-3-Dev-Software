@@ -9,6 +9,7 @@ import co.edu.udec.taskmgr.domain.entidades.User;
 
 
 import java.sql.*;
+import java.util.List;
 
 public class UserRepositoryImp implements IUserRepository {
 
@@ -47,5 +48,10 @@ public class UserRepositoryImp implements IUserRepository {
         } catch (SQLException e) {
             throw new RuntimeException("Error finding user", e);
         }
+    }
+
+    @Override
+    public List<User> findAll() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }

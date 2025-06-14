@@ -1,6 +1,7 @@
 package co.edu.udec.taskmgr.domain.puertos;
 
 import co.edu.udec.taskmgr.domain.entidades.User;
+import java.util.List;
 
 /**
  *
@@ -9,4 +10,5 @@ import co.edu.udec.taskmgr.domain.entidades.User;
 public interface IUserRepository {
     User findByEmail(String email);
     void save(User user);
+    List<User> findAll();
 }
