@@ -9,6 +9,7 @@ import co.edu.udec.taskmgr.domain.entidades.User;
 
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class UserRepositoryImp implements IUserRepository {
@@ -52,6 +53,27 @@ public class UserRepositoryImp implements IUserRepository {
 
     @Override
     public List<User> findAll() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        List<User> users = new ArrayList<>();
+
+    try (Connection conn = PersistenceManager.getConnection()) {
+        String sql = "SELECT * FROM users";
+        PreparedStatement stmt = conn.prepareStatement(sql);
+        ResultSet rs = stmt.executeQuery();
+
+        while (rs.next()) {
+            User user = new User(
+                rs.getString("email"),
+                rs.getString("password"),
+                rs.getString("name"),
+                UserRole.valueOf(rs.getString("role"))
+            );
+            users.add(user);
+        }
+
+        return users;
+
+        } catch (SQLException e) {
+            throw new RuntimeException("Error retrieving users", e);
+        }
     }
 }
