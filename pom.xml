@@ -40,6 +40,11 @@
             <version>2.2</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.eclipse.persistence</groupId>
+            <artifactId>jakarta.persistence</artifactId>
+            <version>2.2.3</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -54,7 +59,7 @@
                 </configuration>
             </plugin>
 
-            <!-- ✅ Plugin Surefire para JUnit 4 -->
+            <!-- ✅ Plugin Surefire para pruebas -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
