@@ -1,31 +1,58 @@
-# Ejemplo Básico de Clean Architecture en Java
+# Sistema de Gestión de Hospitales (SQLite + JDBC)
 
-Este repositorio contiene un proyecto base que implementa una estructura sencilla basada en los principios de **Clean Architecture**. Su propósito es servir como recurso educativo para estudiantes de desarrollo de software que estén aprendiendo sobre arquitectura de software moderna y buenas prácticas de programación en Java.
+Este proyecto es una implementación académica de un sistema de gestión de hospitales. Forma parte de una actividad práctica en la que se desarrollaron funcionalidades CRUD para dos tablas: `medico` y `empleado`. Todo el sistema está desarrollado en Java utilizando JDBC clásico y SQLite, sin frameworks de persistencia como Hibernate.
 
-##  Objetivos del proyecto
+## Objetivo del proyecto
 
-- Explorar la organización de un proyecto en capas: **Dominio**, **Aplicación**, **Infraestructura** y **Presentación**
-- Comprender el rol de cada tipo de clase:  
-  - Entidades  
-  - Casos de uso  
-  - Interfaces tipo puerto  
-  - Implementaciones tipo adaptador  
-  - Controladores
-- Investigar conceptos clave:
-  - Arquitectura limpia y hexagonal
-  - Inversión de dependencias
-  - Acoplamiento vs desacoplamiento
-  - Patrón Repositorio y patrón CQRS
-- Aplicar funcionalidades reales (como operaciones **CRUD**) de forma estructurada
-- Practicar la creación de **pruebas unitarias** usando JUnit con la metodología **AAA (Arrange, Act, Assert)**
+- Implementar las operaciones básicas de una base de datos de hospital (insertar, consultar, actualizar, eliminar).
+- Utilizar una arquitectura por capas, bajo acoplamiento y separación de responsabilidades.
+- Aplicar pruebas unitarias con JUnit 4 para cada operación CRUD.
+- Ejecutar todo el flujo desde una clase `Main`.
 
-##  Tecnologías utilizadas
 
-- Java 17
-- Maven
-- SQLite (vía JDBC)
-- JUnit 4
-- NetBeans / VS Code / IntelliJ IDEA (compatible)
+## Requisitos previos
+
+- Java 17 o superior
+- Maven 3.6 o superior
+
+## Compilar el proyecto
+
+Para compilar el proyecto desde consola:
+
+    mvn clean compile
+
+Esto descargará las dependencias y compilará todo el código fuente.
+
+## Ejecutar el sistema
+
+Opción 1: Ejecutar directamente desde Maven
+
+    mvn exec:java -Dexec.mainClass="co.edu.udec.taskmgr.Main"
+
+Opción 2: Crear un JAR ejecutable
+
+    mvn clean package
+    java -jar target/taskmgr-1.0-jar-with-dependencies.jar
+
+Esto ejecutará el sistema completo: inicialización de la base de datos, operaciones CRUD en consola para médicos y empleados.
+
+## Ejecutar las pruebas unitarias
+
+    mvn test
+
+Este comando ejecuta las pruebas unitarias definidas para MedicoRepositoryImpl y EmpleadoRepositoryImpl.
+
+## Resultado esperado
+
+- Se crea la base de datos local SQLite con las tablas `medico` y `empleado`.
+- Se insertan datos de ejemplo desde la clase Main.
+- Se muestran en consola los registros recuperados, actualizados y eliminados.
+- Las pruebas confirman que las operaciones CRUD funcionan correctamente.
+
+## Créditos
+
+Proyecto desarrollado por Daniel y Oscar como parte de una actividad académica de la Universidad de Cartagena.
+
 
 ##  Cómo empezar
 
