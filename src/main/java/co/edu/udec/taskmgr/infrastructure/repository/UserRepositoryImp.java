@@ -102,4 +102,18 @@ public class UserRepositoryImp implements IUserRepository {
         }
     }
     
+    @Override
+    public boolean delete(String email) {
+        try (Connection conn = PersistenceManager.getConnection()) {
+            String sql = "DELETE FROM users WHERE email = ?";
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setString(1, email);
+
+            int affectedRows = stmt.executeUpdate();
+            return affectedRows > 0;
+
+        } catch (SQLException e) {
+            throw new RuntimeException("Error deleting user", e);
+        }
+    }
 }

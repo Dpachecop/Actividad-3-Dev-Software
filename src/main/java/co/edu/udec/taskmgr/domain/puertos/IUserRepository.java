@@ -12,4 +12,5 @@ public interface IUserRepository {
     void save(User user);
     List<User> findAll();
     User update(User user);
+    boolean delete(String email);
 }
