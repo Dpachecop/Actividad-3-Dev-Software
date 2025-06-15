@@ -40,7 +40,7 @@ public class SQLiteDatabaseInitializer {
                     FOREIGN KEY(user_email) REFERENCES users(email)
                 );
             """);
-           
+
         } catch (SQLException e) {
             throw new RuntimeException("Error initializing database schema", e);
         }
