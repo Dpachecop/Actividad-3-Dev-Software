@@ -4,13 +4,13 @@ import co.edu.udec.taskmgr.domain.enums.TaskStatus;
 
 public class Task {
 
-    private long id; // ID manejado manualmente desde la BD
+    private long id; 
     private String title;
     private String description;
     private TaskStatus status;
     private String userEmail;
 
-    // Constructor con ID (útil para consultar o actualizar)
+
     public Task(long id, String title, String description, TaskStatus status, String userEmail) {
         this.id = id;
         this.title = title;
@@ -19,7 +19,7 @@ public class Task {
         this.userEmail = userEmail;
     }
 
-    // Constructor sin ID (para insertar nuevas tareas)
+   
     public Task(String title, String description, TaskStatus status, String userEmail) {
         this.title = title;
         this.description = description == null ? "" : description;
@@ -27,7 +27,7 @@ public class Task {
         this.userEmail = userEmail;
     }
 
-    // Getters y Setters
+
     public long getId() { return id; }
 
     public void setId(long id) { this.id = id; }
