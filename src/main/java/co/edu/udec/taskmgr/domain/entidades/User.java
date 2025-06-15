@@ -5,10 +5,10 @@ import co.edu.udec.taskmgr.domain.enums.UserRole;
 
 
 public class User {
-    private final String email;
-    private final String password;
-    private final String name;
-    private final UserRole role;
+    private String email;
+    private String password;
+    private String name;
+    private UserRole role;
 
     public User(String email, String password, String name, UserRole role) {
         if (email == null || email.isBlank()) throw new IllegalArgumentException("Email cannot be empty");
@@ -26,4 +26,21 @@ public class User {
     public String getPassword() { return password; }
     public String getName() { return name; }
     public UserRole getRole() { return role; }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setRole(UserRole role) {
+        this.role = role;
+    }   
+    
 }
