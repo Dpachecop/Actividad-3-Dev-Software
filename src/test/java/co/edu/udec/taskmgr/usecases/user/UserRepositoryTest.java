@@ -34,8 +34,14 @@ public class UserRepositoryTest {
     public void setUp() {
         // Arrange: inicializar repositorio real
         userRepository = new UserRepositoryImp();
+        
+        // Arrange: Insertar un usuario inicial si aún no existe
+        User user = new User("test@email.com", "123456", "Oscar", UserRole.STANDARD);
+        if (userRepository.findByEmail(user.getEmail()) == null) {
+            userRepository.save(user);
+        }
     }
-
+    
     @Test
     public void testSaveAndFindUser() {
         SQLiteDatabaseInitializer.initialize();
@@ -65,4 +71,20 @@ public class UserRepositoryTest {
         }
     }
     
+    public void testUpdateUser() {
+        // Arrange
+        User userToUpdate = userRepository.findByEmail("test@email.com");
+        assertNotNull("El usuario debe existir antes del update", userToUpdate);
+        
+        userToUpdate.setName("Oscar Actualizado");
+        userToUpdate.setPassword("nuevaclave");
+
+        // Act
+        User updatedUser = userRepository.update(userToUpdate);
+
+        // Assert
+        assertNotNull(updatedUser);
+        assertEquals("Oscar Actualizado", updatedUser.getName());
+        assertEquals("nuevaclave", updatedUser.getPassword());
+    }
 }
