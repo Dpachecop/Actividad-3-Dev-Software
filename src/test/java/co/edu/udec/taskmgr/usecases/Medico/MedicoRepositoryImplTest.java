@@ -1,4 +1,4 @@
-
+package co.edu.udec.taskmgr.usecases.Medico;
 import co.edu.udec.taskmgr.domain.entidades.Medico;
 import co.edu.udec.taskmgr.domain.puertos.IMedicoRepository;
 import co.edu.udec.taskmgr.infrastructure.config.SQLiteDatabaseInitializer;
