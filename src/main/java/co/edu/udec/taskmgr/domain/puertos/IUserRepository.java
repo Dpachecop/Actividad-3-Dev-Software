@@ -11,4 +11,5 @@ public interface IUserRepository {
     User findByEmail(String email);
     void save(User user);
     List<User> findAll();
+    User update(User user);
 }

@@ -76,4 +76,30 @@ public class UserRepositoryImp implements IUserRepository {
             throw new RuntimeException("Error retrieving users", e);
         }
     }
+    
+    @Override
+    public User update(User user) {
+        String sql = "UPDATE users SET name = ?, password = ?, role = ? WHERE email = ?";
+
+        try (Connection conn = PersistenceManager.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setString(1, user.getName());
+            stmt.setString(2, user.getPassword());
+            stmt.setString(3, user.getRole().toString());
+            stmt.setString(4, user.getEmail());
+
+            int affectedRows = stmt.executeUpdate();
+
+            if (affectedRows == 0) {
+                throw new RuntimeException("No se pudo actualizar el usuario. Email no encontrado: " + user.getEmail());
+            }
+
+            return user;
+
+        } catch (SQLException e) {
+            throw new RuntimeException("Error al actualizar usuario: " + e.getMessage(), e);
+        }
+    }
+    
 }
