@@ -40,6 +40,10 @@ public class UserRepositoryTest {
         if (userRepository.findByEmail(user.getEmail()) == null) {
             userRepository.save(user);
         }
+        User usuario = new User("delete@email.com", "clave123", "Usuario para borrar", UserRole.STANDARD);
+        if (userRepository.findByEmail(user.getEmail()) == null) {
+            userRepository.save(user);
+        }
     }
     
     @Test
@@ -86,5 +90,19 @@ public class UserRepositoryTest {
         assertNotNull(updatedUser);
         assertEquals("Oscar Actualizado", updatedUser.getName());
         assertEquals("nuevaclave", updatedUser.getPassword());
+    }
+    
+    public void testDeleteUser() {
+        // Arrange
+        String email = "delete@email.com";
+        User userBeforeDelete = userRepository.findByEmail(email);
+        assertNotNull("El usuario debe existir antes de eliminarlo", userBeforeDelete);
+
+        // Act
+        boolean deleted = userRepository.delete(email);
+
+        // Assert
+        assertTrue("El usuario debería haberse eliminado correctamente", deleted);
+        assertNull("El usuario ya no debe existir en la base de datos", userRepository.findByEmail(email));
     }
 }
