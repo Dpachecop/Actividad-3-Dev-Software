@@ -1,4 +1,4 @@
-# Sistema de Gestión de Hospitales (SQLite + JDBC)
+# Sistema de Gestión de Hospitales 
 
 Este proyecto es una implementación académica de un sistema de gestión de hospitales. Forma parte de una actividad práctica en la que se desarrollaron funcionalidades CRUD para dos tablas: `medico` y `empleado`. Todo el sistema está desarrollado en Java utilizando JDBC clásico y SQLite, sin frameworks de persistencia como Hibernate.
 
