@@ -40,6 +40,37 @@ public class SQLiteDatabaseInitializer {
                     FOREIGN KEY(user_email) REFERENCES users(email)
                 );
             """);
+            
+            stmt.executeUpdate("""
+            CREATE TABLE IF NOT EXISTS medico (
+                id_medico INTEGER PRIMARY KEY AUTOINCREMENT,
+                nombre TEXT NOT NULL,
+                direccion TEXT,
+                telefono TEXT,
+                poblacion TEXT,
+                provincia TEXT,
+                codigo_postal TEXT,
+                num_seguridad_social TEXT,
+                num_colegiado TEXT,
+                categoria TEXT
+            );
+            """);
+            
+            // Crear tabla de empleados
+            stmt.executeUpdate("""
+            CREATE TABLE IF NOT EXISTS empleado (
+                id_empleado INTEGER PRIMARY KEY AUTOINCREMENT,
+                nombre TEXT NOT NULL,
+                direccion TEXT,
+                telefono TEXT,
+                poblacion TEXT,
+                provincia TEXT,
+                codigo_postal TEXT,
+                nif TEXT,
+                num_seguridad_social TEXT,
+                tipo_empleado TEXT
+            );
+            """);
 
         } catch (SQLException e) {
             throw new RuntimeException("Error initializing database schema", e);
